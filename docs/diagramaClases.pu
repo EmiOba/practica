@@ -1,0 +1,88 @@
+
+@startuml diagrama de clase 
+
+class Sede {}
+class MercaDAW{}
+class Producto{
+   - nombre: String
+   - marca: String
+   - categoria: TipoProducto
+   - precio: double
+   - iva = IVA
+   - altura
+   - anchura 
+   - peso
+   - numElemento
+   - descripcion
+
+}
+abstract TipoProducto{
+     
+}
+class Alimentacion{
+   + IVA: double = 0.04;
+}
+class Drogeria{
+   + IVA: double = 0.10; 
+}
+class Cosmetica{
+   + IVA: double = 0.21;
+}
+
+class Empleado{
+   + ID: String
+   - nombre: String
+   - apellido: String
+   - categoria: Puesto
+}
+abstract CategoriaPuesto{}
+
+class Reponedor{
+   + SUELDO: double= 1200
+}
+class Cajero{
+   + SUELDO: double= 1300
+}
+class Encargado{
+   + SUELDO: double= 1500
+}
+
+class Cliente{
+   + CODIGO_POSTAL
+   - nombre: String
+   - correo: String
+   - fechaCompra:COMPRA
+}
+
+interface comprable{
+   +COMPRA: date
+}
+
+interface Tareas{
+   + darAltaProducto():void
+   + darAltaEmpleado():void
+   + visualizarDatosProducto():String[]
+   + visualizarDatosEmpleado():String[]
+   + obtenerPrecioProducto():double
+   + imprimirEtiqueta():void
+}
+
+MercaDAW *-- Producto
+MercaDAW *-- Empleado
+MercaDAW *-- Cliente
+
+Producto <|-- TipoProducto
+
+TipoProducto <|-- Alimentacion 
+TipoProducto <|-- Drogeria
+TipoProducto <|-- Cosmetica
+
+Empleado <|-- CategoriaPuesto
+
+CategoriaPuesto <|-- Reponedor
+CategoriaPuesto <|-- Cajero
+CategoriaPuesto <|-- Encargado
+
+Empleado ..|> Tareas
+
+@enduml
