@@ -47,17 +47,17 @@ class Cliente{
    + CODIGO_POSTAL
    - nombre: String
    - correo: String
-   - fechaCompra:COMPRA
+   - fecha: String
 }
 interface comprable{
-   +COMPRA: date
+   + fechaCompra():String
 }
-interface Menu{
+interface Visualizable{
    + darAltaProducto():void
    + darAltaEmpleado():void
-   + visualizarDatosProducto():String[]
-   + visualizarDatosEmpleado():String[]
-   + obtenerPrecioProducto():double
+   + visualizarDatosProducto(Producto p)
+   + visualizarListaEmpleado():List Em
+   + obtenerPrecioProducto(Producto p)
    + imprimirEtiqueta():void
 }
 
@@ -75,7 +75,6 @@ Empleado <|-- Encargado
 
 Cliente ..|> comprable
 
-Empleado ..|> Menu
-MercaDAW ..|> Menu
+MercaDAW ..|> Visualizable
 
 @enduml
