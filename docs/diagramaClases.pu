@@ -1,23 +1,22 @@
 
 @startuml diagrama de clase 
 
-class Sede {}
-class MercaDAW{}
-class Producto{
+class MercaDAW{
+}
+abstract Producto{
    - nombre: String
    - marca: String
-   - categoria: TipoProducto
+   - categoria: String
    - precio: double
-   - iva = IVA
-   - altura
-   - anchura 
-   - peso
-   - numElemento
-   - descripcion
-
-}
-abstract TipoProducto{
-     
+   - altura:int
+   - anchura:int 
+   - peso:int
+   - numElemento: int
+   - descripcion: String
+   + recargoPeso(int peso)
+   + recargoAltura(int altura)
+   + recargoAnchura(int anchura)
+   + recargoElemento(int elemento)
 }
 class Alimentacion{
    + IVA: double = 0.04;
@@ -28,15 +27,13 @@ class Drogeria{
 class Cosmetica{
    + IVA: double = 0.21;
 }
-
 class Empleado{
+   + SUELDO_ESTANDAR: double= 1000
    + ID: String
-   - nombre: String
+   - nombre :String
    - apellido: String
-   - categoria: Puesto
+   - categoria: String
 }
-abstract CategoriaPuesto{}
-
 class Reponedor{
    + SUELDO: double= 1200
 }
@@ -46,19 +43,16 @@ class Cajero{
 class Encargado{
    + SUELDO: double= 1500
 }
-
 class Cliente{
    + CODIGO_POSTAL
    - nombre: String
    - correo: String
    - fechaCompra:COMPRA
 }
-
 interface comprable{
    +COMPRA: date
 }
-
-interface Tareas{
+interface Menu{
    + darAltaProducto():void
    + darAltaEmpleado():void
    + visualizarDatosProducto():String[]
@@ -67,22 +61,21 @@ interface Tareas{
    + imprimirEtiqueta():void
 }
 
-MercaDAW *-- Producto
-MercaDAW *-- Empleado
-MercaDAW *-- Cliente
+MercaDAW o-- Producto
+MercaDAW o-- Empleado
+MercaDAW o-- Cliente
 
-Producto <|-- TipoProducto
+Producto <|-- Alimentacion 
+Producto <|-- Drogeria
+Producto <|-- Cosmetica
 
-TipoProducto <|-- Alimentacion 
-TipoProducto <|-- Drogeria
-TipoProducto <|-- Cosmetica
+Empleado <|-- Reponedor
+Empleado <|-- Cajero
+Empleado <|-- Encargado
 
-Empleado <|-- CategoriaPuesto
+Cliente ..|> comprable
 
-CategoriaPuesto <|-- Reponedor
-CategoriaPuesto <|-- Cajero
-CategoriaPuesto <|-- Encargado
-
-Empleado ..|> Tareas
+Empleado ..|> Menu
+MercaDAW ..|> Menu
 
 @enduml
