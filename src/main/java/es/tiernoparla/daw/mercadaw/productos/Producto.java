@@ -1,6 +1,8 @@
 package es.tiernoparla.daw.mercadaw.productos;
 
-public abstract class Producto {
+import es.tiernoparla.daw.mercadaw.MercaDAW;
+
+public abstract class Producto extends MercaDAW{
    private String nombre="";
    private String marca ="";
    private String categoria="";
