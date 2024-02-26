@@ -7,5 +7,8 @@ public class Cajero extends Empleado{
       super(nombre, apellido, categoria);
       //TODO Auto-generated constructor stub
    }
-
+   
+   public double getSUELDO() {
+      return SUELDO;
+   }
 }
