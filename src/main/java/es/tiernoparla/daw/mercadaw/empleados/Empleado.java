@@ -45,5 +45,6 @@ public class Empleado extends MercaDAW{
       this.nombre = nombre;
       this.apellido = apellido;
       this.categoria = categoria;
+     
    }
 }

@@ -5,7 +5,7 @@ public class Cajero extends Empleado{
    
    public Cajero(String nombre, String apellido, String categoria) {
       super(nombre, apellido, categoria);
-      //TODO Auto-generated constructor stub
+      
    }
    
    public double getSUELDO() {

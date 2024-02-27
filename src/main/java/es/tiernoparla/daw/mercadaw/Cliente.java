@@ -32,8 +32,7 @@ public class Cliente extends MercaDAW implements Comprable{
    }
 
 @Override
-public String fechaCompra() {
-   // TODO Auto-generated method stub
-   throw new UnsupportedOperationException("Unimplemented method 'fechaCompra'");
+public String fechaCompra() {//revisar esto no esta bien
+   return getFecha();
 }
 }

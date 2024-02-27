@@ -8,15 +8,18 @@ abstract Producto{
    - marca: String
    - categoria: String
    - precio: double
-   - altura:int
-   - anchura:int 
-   - peso:int
+   - altura:double
+   - anchura:double 
+   - peso:double
    - numElemento: int
    - descripcion: String
-   + recargoPeso(int peso)
-   + recargoAltura(int altura)
-   + recargoAnchura(int anchura)
-   + recargoElemento(int elemento)
+}
+interface Recargo{
+   + recargoPeso(double peso):double
+   + recargoAltura(double altura):double
+   + recargoAnchura(double anchura):double
+   + recargoElemento(int numElemento):double
+
 }
 class Alimentacion{
    + IVA: double = 0.04;
@@ -76,5 +79,7 @@ Empleado <|-- Encargado
 Cliente ..|> comprable
 
 MercaDAW ..|> Visualizable
-
+Alimentacion ..|> Recargo
+Drogeria ..|> Recargo
+Cosmetica ..|> Recargo
 @enduml
