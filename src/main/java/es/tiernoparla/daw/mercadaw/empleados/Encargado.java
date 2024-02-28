@@ -6,10 +6,9 @@ public class Encargado extends Empleado {
    public Encargado(String nombre, String apellido, String categoria) {
       super(nombre, apellido, categoria);
    }
-   
+
    public double getSUELDO() {
       return SUELDO;
    }
-
 
 }

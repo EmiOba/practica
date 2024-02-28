@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import es.tiernoparla.daw.mercadaw.productos.Alimentacion;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -75,5 +74,5 @@ public class AlimentacionTest {
                 "Alimentacion", 10, 0.02, 0.10, 5, 1, "de alimentacion");
         double recargoObtenido = producto.recargoPorAnchura(producto.getAnchura());
         assertEquals(recargoEsperado, recargoObtenido);
-    }}
-    
+    }
+}
