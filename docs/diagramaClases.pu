@@ -13,14 +13,13 @@ abstract Producto{
    - peso:double
    - numElemento: int
    - descripcion: String
-}
-interface Recargo{
    + recargoPeso(double peso):double
    + recargoAltura(double altura):double
    + recargoAnchura(double anchura):double
    + recargoElemento(int numElemento):double
 
 }
+
 class Alimentacion{
    + IVA: double = 0.04;
 }
@@ -47,21 +46,19 @@ class Encargado{
    + SUELDO: double= 1500
 }
 class Cliente{
-   + CODIGO_POSTAL
+   - codigoPostal:String
    - nombre: String
    - correo: String
    - fecha: String
 }
-interface comprable{
-   + fechaCompra():String
-}
-interface Visualizable{
+interface Funcionalidades{
    + darAltaProducto():void
    + darAltaEmpleado():void
    + visualizarDatosProducto(Producto p)
    + visualizarListaEmpleado():List Em
    + obtenerPrecioProducto(Producto p)
    + imprimirEtiqueta():void
+  
 }
 
 MercaDAW o-- Producto
@@ -76,10 +73,6 @@ Empleado <|-- Reponedor
 Empleado <|-- Cajero
 Empleado <|-- Encargado
 
-Cliente ..|> comprable
+MercaDAW ..|> Funcionalidades
 
-MercaDAW ..|> Visualizable
-Alimentacion ..|> Recargo
-Drogeria ..|> Recargo
-Cosmetica ..|> Recargo
 @enduml

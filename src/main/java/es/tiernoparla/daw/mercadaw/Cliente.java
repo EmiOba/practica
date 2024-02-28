@@ -1,12 +1,13 @@
 package es.tiernoparla.daw.mercadaw;
 
-public class Cliente extends MercaDAW implements Comprable{
-   final String CODIGO_POSTAL="";
+public class Cliente extends MercaDAW{
+   private String codigoPostal="";
    private String nombre ="";
    private String correo ="";
    private String fecha  ="";
 
-   public Cliente(String nombre, String correo, String fecha) {
+   public Cliente(String codigoPostal, String nombre, String correo, String fecha) {
+      this.codigoPostal= codigoPostal;
       this.nombre = nombre;
       this.correo = correo;
       this.fecha = fecha;
@@ -30,9 +31,11 @@ public class Cliente extends MercaDAW implements Comprable{
    public void setFecha(String fecha) {
       this.fecha = fecha;
    }
+   public String getCodigoPostal() {
+      return codigoPostal;
+   }
 
-@Override
-public String fechaCompra() {//revisar esto no esta bien
-   return getFecha();
-}
+   public void setCodigoPostal(String codigoPostal) {
+      this.codigoPostal = codigoPostal;
+   }
 }

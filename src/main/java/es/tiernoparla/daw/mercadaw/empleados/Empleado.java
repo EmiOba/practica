@@ -9,6 +9,14 @@ public class Empleado extends MercaDAW{
    private String apellido = "";
    private String categoria = "";
    
+   public Empleado(String nombre, String apellido, String categoria) {
+      this.nombre = nombre;
+      this.apellido = apellido;
+      this.categoria = categoria;
+      
+     
+   }
+
    public double getSUELDO_ESTANDAR() {
       return SUELDO_ESTANDAR;
    }
@@ -41,10 +49,15 @@ public class Empleado extends MercaDAW{
       this.categoria = categoria;
    }
 
-   public Empleado(String nombre, String apellido, String categoria) {
-      this.nombre = nombre;
-      this.apellido = apellido;
-      this.categoria = categoria;
+   @Override
+   public String toString() {
+      final String PLANTILLA = "* Nombre:%s\n* Apellido:%s\n* Categoría:%s";    
+      String cadena = "";
+  
+      cadena = String.format(PLANTILLA, getNombre(), getApellido(), getCategoria());
      
+      return cadena;
    }
+
+
 }
