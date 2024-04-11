@@ -27,7 +27,7 @@ Muestra la información de todos los empleados registrados en el sistema, incluy
 
 5. Obtener precio de productos:
 
-Calcula el precio total de todos los productos registrados en el sistema y lo muestra, además de convertirlo a dólares.
+Calcula el precio total de los productos registrados en el sistema y lo muestra, además de convertirlo a dólares.
 
 1. Imprimir etiquetas:
 

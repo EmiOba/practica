@@ -3,7 +3,8 @@ package es.tiernoparla.daw.mercadaw.productos;
 import es.tiernoparla.daw.mercadaw.MercaDAW;
 
 public abstract class Producto extends MercaDAW {
-   final static double PRECIO_VENTA = 0.25;
+   final static double PRECIO_VENTA = 1.25;
+
    private String nombre = "";
    private String marca = "";
    private String categoria = "";
@@ -67,63 +68,66 @@ public abstract class Producto extends MercaDAW {
    public void setDescripcion(String descripcion) {
       this.descripcion = descripcion;
    }
-      
-   public double recargoPorPeso(double peso) {
+   public static double getPrecioVenta() {
+      return PRECIO_VENTA;
+   }
+
+   public double aplicarRecargoPorPeso(double peso) {
       final double PESO_MAX = 5;
       final double PESO_MIN = 1;
       final double RECARGO_PESO_MAYOR_5_KG = 0.15;
       final double RECARGO_PESO_MAYOR_1_KG = 0.10;
       final double RECARGO_PESO_MENOR_1_KG = 0.05;
-      double recargoPeso;
+      double recargoPeso = 0;
     
-      if (peso > PESO_MAX) {
-         recargoPeso = getPrecio() * RECARGO_PESO_MAYOR_5_KG;
-      } else if (peso > PESO_MIN) {
-         recargoPeso = getPrecio() * RECARGO_PESO_MAYOR_1_KG;
-      } else {
-         recargoPeso = getPrecio() * RECARGO_PESO_MENOR_1_KG;
+      if (peso > PESO_MAX) {// > 5 OSEA UN 6
+         recargoPeso = PRECIO_VENTA * RECARGO_PESO_MAYOR_5_KG; //1.4
+      } else if (peso > PESO_MIN) {// > 1 OSEA UN 4
+         recargoPeso = PRECIO_VENTA * RECARGO_PESO_MAYOR_1_KG;//0.12
+      } else {// < 1 osea un 0.5, =5, =1;
+         recargoPeso = PRECIO_VENTA * RECARGO_PESO_MENOR_1_KG;//0.06
       }
       return recargoPeso;
    }
-  
-   public double recargoPorAltura(double altura) {
+
+   public double aplicarRecargoAltura(double altura) {
 
       final double METRO_LIMITE = 0.5;
       final double RECARGO_ALTURA_MAYOR = 0.10;
       final double RECARGO_ALTURA_MENOR = 0.05;
-      double recargoAltura;
+      double recargoAltura = 0;
 
       if (altura > METRO_LIMITE) {
-         recargoAltura = getPrecio() * RECARGO_ALTURA_MAYOR;
+         recargoAltura = PRECIO_VENTA * RECARGO_ALTURA_MAYOR;//0.12
       } else {
-         recargoAltura = getPrecio() * RECARGO_ALTURA_MENOR;
+         recargoAltura = PRECIO_VENTA * RECARGO_ALTURA_MENOR;//0.06
       }
 
       return recargoAltura;
    }
   
-   public double recargoPorAnchura(double anchura) {
+   public double aplicarRecargoPorAnchura(double anchura) {
 
       final double METRO_LIMITE = 0.5;
       final double RECARGO_ANCHURA_MAYOR= 0.10;
       final double RECARGO_ANCHURA_MENOR = 0.05;
-      double recargoAnchura;
+      double recargoAnchura = 0;
       
       if (anchura > METRO_LIMITE) {
-         recargoAnchura = getPrecio() * RECARGO_ANCHURA_MAYOR;
+         recargoAnchura = PRECIO_VENTA * RECARGO_ANCHURA_MAYOR;//0.12
       } else {
-         recargoAnchura = getPrecio() * RECARGO_ANCHURA_MENOR;
+         recargoAnchura = PRECIO_VENTA * RECARGO_ANCHURA_MENOR;//0.06
       }
       return recargoAnchura;
    }
   
-   public double recargoPorNumElemento(int numElemento) {
+   public double aplicarRecargoPorNumElemento(int numElemento) {
       final double ELEM_LIMITE = 2;
       final double RECARGO_ELEMENTOS_MAYOR = 0.10;
-      double recargoElementos;
+      double recargoElementos = 0;
 
       if (numElemento > ELEM_LIMITE) {
-         recargoElementos = getPrecio() * RECARGO_ELEMENTOS_MAYOR;
+         recargoElementos = PRECIO_VENTA * RECARGO_ELEMENTOS_MAYOR;//0.12
       } else {
          recargoElementos = 0.0;
       }
@@ -137,8 +141,8 @@ public abstract class Producto extends MercaDAW {
          "* Altura en metros:%s\n"+ "* Anchura en metros:%s\n"+"* Peso en kg:%s\n"+
          "* Número de elementos:%s\n"+"* Descripción:%s";
 
-      String cadena = String.format(PLANTILLA, getNombre(), getMarca(), getPrecio()
-          +  getAltura(), getAnchura(), getPeso(), getNumElemento(), getDescripcion());
+      String cadena = String.format(PLANTILLA, nombre, marca, precio
+          +  altura, anchura, peso, numElemento, descripcion);
 
       return cadena;
    }

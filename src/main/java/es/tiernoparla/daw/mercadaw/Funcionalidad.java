@@ -1,16 +1,20 @@
 package es.tiernoparla.daw.mercadaw;
+import java.util.List;
+
+import es.tiernoparla.daw.mercadaw.empleados.Empleado;
+import es.tiernoparla.daw.mercadaw.productos.Producto;
 
 public interface Funcionalidad {
    
-   public void darAltaProducto();
+   public void darAltaProducto(Producto producto);
 
-   public void darAltaEmpleado();
+   public void darAltaEmpleado(Empleado empleado);
 
-   public void visualizarDatosProducto();
+   public void mostrarDatosProducto();
 
-   public void visualizarDatosEmpleado();
+   public List<Empleado> mostrarListaEmpleado();
 
-   public double obtenerPrecioProducto();
+   public double obtenerPrecioProducto(Producto producto);
 
-   public void imprimirEtiqueta();
+   public void imprimirEtiqueta(Producto producto);
 }

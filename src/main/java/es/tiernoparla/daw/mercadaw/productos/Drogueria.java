@@ -5,8 +5,8 @@ public class Drogueria extends Producto {
    final double IVA = 0.10;
    
 
-   public Drogueria(String nombre, String marca, String categoria, double precio, int altura, int anchura, int peso,
-         int numElemento, String descripcion) {
+   public Drogueria(String nombre, String marca, String categoria, 
+         double precio, double altura, double anchura, double peso,int numElemento, String descripcion) {
       super(nombre, marca, categoria, precio, altura, anchura, peso, numElemento, descripcion);
    }
    public String getSIMBOLO_PORCENTAJE() {

@@ -2,8 +2,13 @@
 @startuml diagrama de clase 
 
 class MercaDAW{
+   + main()
+}
+interface Menu{
++ menu(): void
 }
 abstract Producto{
+    + PRECIO_VENTA: double = 0.25;
    - nombre: String
    - marca: String
    - categoria: String
@@ -13,11 +18,10 @@ abstract Producto{
    - peso:double
    - numElemento: int
    - descripcion: String
-   + recargoPeso(double peso):double
-   + recargoAltura(double altura):double
-   + recargoAnchura(double anchura):double
-   + recargoElemento(int numElemento):double
-
+   + aplicarRecargoPorPeso(double peso):double
+   + aplicarRecargoPorAltura(double altura):double
+   + aplicarRecargoPorAnchura(double anchura):double
+   + aplicarRecargoPorNumElemento(int numElemento):double
 }
 
 class Alimentacion{
@@ -52,12 +56,12 @@ class Cliente{
    - fecha: String
 }
 interface Funcionalidades{
-   + darAltaProducto():void
-   + darAltaEmpleado():void
-   + visualizarDatosProducto(Producto p)
-   + visualizarListaEmpleado():List Em
-   + obtenerPrecioProducto(Producto p)
-   + imprimirEtiqueta():void
+   + darAltaProducto(Producto p):void
+   + darAltaEmpleado(Producto p):void
+   + mostrarDatosProducto(Producto p)
+   + mostrarListaEmpleado():List<Em>
+   + obtenerPrecioProducto(Producto p):double
+   + imprimirEtiqueta(Producto p):void
   
 }
 
@@ -73,6 +77,7 @@ Empleado <|-- Reponedor
 Empleado <|-- Cajero
 Empleado <|-- Encargado
 
-MercaDAW ..|> Funcionalidades
+Funcionalidades <|.. MercaDAW
+Menu <|.. MercaDAW
 
 @enduml

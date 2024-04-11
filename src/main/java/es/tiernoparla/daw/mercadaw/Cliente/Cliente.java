@@ -1,4 +1,6 @@
-package es.tiernoparla.daw.mercadaw;
+package es.tiernoparla.daw.mercadaw.Cliente;
+
+import es.tiernoparla.daw.mercadaw.MercaDAW;
 
 public class Cliente extends MercaDAW {
    private String codigoPostal = "";
@@ -44,4 +46,17 @@ public class Cliente extends MercaDAW {
    public void setCodigoPostal(String codigoPostal) {
       this.codigoPostal = codigoPostal;
    }
+
+   @Override
+   public String toString() {
+      final String PLANTILLA = "Codigo Postal:%s\n Nombre:%s\n"+
+      "Correo:%s\n Fecha compra:%s\n";
+
+      String cadena = String.format(PLANTILLA, getCodigoPostal(),
+       getNombre(), getCorreo(), getFecha());
+
+      return cadena;
+   }
+
+
 }

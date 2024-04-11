@@ -5,12 +5,12 @@ public class Cosmetica extends Producto {
    final double IVA = 0.21;
    
 
-   public Cosmetica(String nombre, String marca, String categoria, double precio, int altura, int anchura, int peso,
-         int numElemento, String descripcion) {
+   public Cosmetica(String nombre, String marca, String categoria,
+         double precio, double altura, double anchura, double peso, int numElemento, String descripcion) {
       super(nombre, marca, categoria, precio, altura, anchura, peso, numElemento, descripcion);
    }
    public String getSIMBOLO_PORCENTAJE() {
-      return SIMBOLO_PORCENTAJE;
+      return SIMBOLO_PORCENTAJE;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
    }
    public double getIVA() {
       return IVA;

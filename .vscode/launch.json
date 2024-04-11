@@ -6,6 +6,13 @@
    "configurations": [
       {
          "type": "java",
+         "name": "MercaDAW",
+         "request": "launch",
+         "mainClass": "es.tiernoparla.daw.mercadaw.MercaDAW",
+         "projectName": "pruebas"
+      },
+      {
+         "type": "java",
          "name": "Current File",
          "request": "launch",
          "mainClass": "${file}"

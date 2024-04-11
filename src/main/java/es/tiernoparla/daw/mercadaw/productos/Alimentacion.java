@@ -16,16 +16,14 @@ public class Alimentacion extends Producto {
    public String toString() {
       final String PLANTILLA = "* Nombre:%s\n"+
          "* Marca:%s\n"+ "* Categoría:%s\n"+ "* Precio en Euros:%s\n"+"* IVA:%s\n"+
-         "* Altura en metros:%s\n"+ "* Anchura en metros:%s\n"+"* Peso en kg:%s\n"+
-         "* Número de elementos:%s\n"+"* Descripción:%s";
+         "* Altura en metros:%s\n"+ "* Anchura en metros:%s\n"+ "* Peso en kg:%s\n"+
+         "* Número de elementos:%s\n"+ "* Descripción:%s";
   
       String cadena = String.format(PLANTILLA, getNombre(), getMarca(), getPrecio(), getIVA(),
       getSIMBOLO_PORCENTAJE(), getAltura(), getAnchura(), getPeso(), getNumElemento(), getDescripcion());
      
       return cadena;
    }
-
-
 
    public String getSIMBOLO_PORCENTAJE() {
       return SIMBOLO_PORCENTAJE;

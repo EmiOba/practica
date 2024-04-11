@@ -1,98 +1,135 @@
 package es.tiernoparla.daw.mercadaw;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Scanner;
 
-import es.tiernoparla.daw.mercadaw.empleados.Cajero;
 import es.tiernoparla.daw.mercadaw.empleados.Empleado;
-import es.tiernoparla.daw.mercadaw.empleados.Encargado;
-import es.tiernoparla.daw.mercadaw.empleados.Reponedor;
 import es.tiernoparla.daw.mercadaw.productos.Alimentacion;
-import es.tiernoparla.daw.mercadaw.productos.Cosmetica;
-import es.tiernoparla.daw.mercadaw.productos.Drogueria;
 import es.tiernoparla.daw.mercadaw.productos.Producto;
 
-public class MercaDAW implements Funcionalidad {
+public class MercaDAW implements Funcionalidad, Menu {
    private static final double CONVERSION_EURO_DOLAR = 1.90;
 
    List<Producto> productos = new ArrayList<>();
-   Alimentacion productoAlimentacion = new Alimentacion(null, null,
-         null, 0, 0, 0, 0, 0, null);
-   Drogueria productoDrogeria = new Drogueria(null, null,
-         null, 0, 0, 0, 0, 0, null);
-   Cosmetica productoCosmetica = new Cosmetica(null, null,
-         null, 0, 0, 0, 0, 0, null);
 
-   Set<Empleado> empleados = new LinkedHashSet<>();
-   Empleado empleadoEstandar = new Empleado(null, null, null);
-   Reponedor empleadoReponedor = new Reponedor(null, null, null);
-   Cajero empleadoCajero = new Cajero(null, null, null);
-   Encargado empleadoEncargado = new Encargado(null, null, null);
+   List<Empleado> empleados = new ArrayList<>();
 
-   @Override
-   public void darAltaProducto() {
-      productos.add(productoAlimentacion);
-      productos.add(productoDrogeria);
-      productos.add(productoCosmetica);
+   public static void main(String[] args) {
 
+      MercaDAW mercado = new MercaDAW();
+
+      Alimentacion al = new Alimentacion("Cafe", "Mecella",
+      "Alimentacion", 0.1, 0.2,
+      0.3, 0.4, 1, "Echo en colombia");
+      
+      Empleado em = new Empleado("berni",
+       "lopez", "Cajero");
+
+      int opcion = 0;
+
+      do {
+         mercado.menu();
+
+         Scanner sc = new Scanner(System.in);
+         System.out.println(MSG_INTRODUCIR_OPC);
+         opcion = sc.nextInt();
+
+         switch (opcion) {
+            case OPC_DAR_ALTA_PRODUCTO:
+                  mercado.darAltaProducto(al);
+               break;
+            case OPC_DAR_ALTA_EMPLEADO:
+                  mercado.darAltaEmpleado(em);
+               break;
+            case OPC_MOSTRAR_DATOS_PRODUCTO:
+                  mercado.mostrarDatosProducto();
+               break;
+            case OPC_MOSTRAR_LISTA_EMPLEADO:
+                  mercado.mostrarListaEmpleado();
+               break;
+            case OPC_OBTENER_PRECIO_PRODUCTO:
+                  mercado.obtenerPrecioProducto(al);
+               break;
+            case OPC_IMPRIMIR_ETIQUETA:
+                  mercado.imprimirEtiqueta(al);
+               break;
+            default:
+                  System.out.println(MSG_FIN_DEL_PROGRAM);
+               break;     
+         }
+         
+      } while (opcion != OPC_SALIR);
+      
    }
 
    @Override
-   public void darAltaEmpleado() {
-      empleados.add(empleadoEstandar);
-      empleados.add(empleadoReponedor);
-      empleados.add(empleadoCajero);
-      empleados.add(empleadoEncargado);
+   public void menu() {
+       final String SALTO_DE_LINEA = "\n";
+      System.out.println(MSG_OPC_1 + SALTO_DE_LINEA +
+                         MSG_OPC_2 + SALTO_DE_LINEA +
+                         MSG_OPC_3 + SALTO_DE_LINEA +
+                         MSG_OPC_4 + SALTO_DE_LINEA + 
+                         MSG_OPC_5 + SALTO_DE_LINEA +
+                         MSG_OPC_6 + SALTO_DE_LINEA +
+                         MSG_OPC_7 + SALTO_DE_LINEA);
    }
 
    @Override
-   public void visualizarDatosProducto() {
-      for (int i = 0; i < productos.size(); i++) {
-         productos.toString();
-      }
+   public void darAltaProducto(Producto producto) {
+      productos.add(producto);
    }
 
    @Override
-   public void visualizarDatosEmpleado() {
-      for (int i = 0; i < empleados.size(); i++) {
-         empleados.toString();
-      }
+   public void darAltaEmpleado(Empleado empleado) {
+      empleados.add(empleado);
    }
 
    @Override
-   public double obtenerPrecioProducto() {
-      final String MSG_DOLAR = "Precio total en dólares: ";
-      double precioTotal = 0.0;
-      for (Producto producto : productos) {
-         double recargo = 0.0;
+   public void mostrarDatosProducto() {
+      productos.toString();
+   }
 
-         // Calcular recargo por peso
-         recargo += producto.recargoPorPeso(producto.getPeso());
+   @Override
+   public List<Empleado> mostrarListaEmpleado() {
+      return empleados;
+   }
 
-         // Calcular recargo por altura
-         recargo += producto.recargoPorAltura(producto.getAltura());
+   @Override
+   public double obtenerPrecioProducto(Producto producto) {
+      double precioTotal= 0.0;
+      producto.toString();
 
-         // Calcular recargo por anchura
-         recargo += producto.recargoPorAnchura(producto.getAnchura());
+      precioTotal =producto.aplicarRecargoPorPeso(producto.getPeso()) + 
+      producto.aplicarRecargoAltura(producto.getAltura()) + 
+      producto.aplicarRecargoPorAnchura(producto.getAnchura()) +
+      producto.aplicarRecargoPorNumElemento(producto.getNumElemento());
 
-         // Calcular recargo por número de elementos
-         recargo += producto.recargoPorNumElemento(producto.getNumElemento());
+      double combersion = precioTotal * CONVERSION_EURO_DOLAR;
+      System.out.println(combersion);
 
-         // Sumar el recargo al precio total
-         precioTotal += recargo;
-      }
-      double precioDolar = precioTotal / CONVERSION_EURO_DOLAR;
-      String cadena = productos.toString() + MSG_DOLAR + precioDolar;
-      System.out.println(cadena);
       return precioTotal;
    }
 
    @Override
-   public void imprimirEtiqueta() {
-      for (Producto producto : productos) {
-         producto.toString();
-      }
+   public void imprimirEtiqueta(Producto producto) {
+      producto.toString();
    }
+   public List<Producto> getProductos() {
+      return productos;
+   }
+
+   public void setProductos(List<Producto> productos) {
+      this.productos = productos;
+   }
+
+   public List<Empleado> getEmpleados() {
+      return empleados;
+   }
+
+   public void setEmpleados(List<Empleado> empleados) {
+      this.empleados = empleados;
+   }
+
+
 }
